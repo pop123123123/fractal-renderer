@@ -39,6 +39,11 @@ fn add(a: Complex, b: Complex) -> Complex {
 }
 
 fn mand(c: Complex, previous: Complex, depth: u16, limit: f64) -> i32 {
+  let q = (previous[0] - 0.25).powf(2.0) + previous[1].powf(2.0);
+  if q * (q + (previous[0] - 0.25)) <= 0.25 * previous[1].powf(2.0) {
+    return -1;
+  }
+
   let mut previous = previous;
   let mut res = -1;
   for depth in (0..(depth + 1)).rev() {
