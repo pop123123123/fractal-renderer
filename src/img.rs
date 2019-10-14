@@ -11,7 +11,7 @@ pub const HEIGHT_F: f64 = HEIGHT as f64;
 
 pub type Color = [u8; 3];
 
-pub fn save_image(screen: &Vec<Color>, name: &str) {
+pub fn save_image(screen: &Vec<Color>, name: String) {
   //let min_max = screen.iter().minmax().into_option();
   //let (min, max) = min_max.unwrap();
 
