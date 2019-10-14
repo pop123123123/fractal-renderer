@@ -20,7 +20,7 @@ fn main() {
   let scale: f64 = 0.25;
   let (center_x, center_y): (f64, f64) = (0.0, 0.0);
   let frame = (0..WIDTH * HEIGHT)
-    //.into_par_iter()
+    .into_par_iter()
     .map(|a| {
       fractale(
         (a_to_x(a) + center_x) / scale,
