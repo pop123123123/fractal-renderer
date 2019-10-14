@@ -16,10 +16,17 @@ use crate::img::*;
 mod fractale;
 use crate::fractale::*;
 
+const COUNT : u64 = 90;
+
 fn main() {
   let mut scale: f64 = 0.25;
   let (mut center_x, mut center_y): (f64, f64) = (0.0, 0.0);
-  for i in 0..300 {
+
+
+  let mut pb = ProgressBar::new(COUNT);
+  pb.format("╢▌▌░╟");
+
+  for i in 0..COUNT {
     let frame = (0..WIDTH * HEIGHT)
       .into_par_iter()
       .map(|a| {
@@ -37,7 +44,9 @@ fn main() {
     }
     scale *= 1.1;
     save_image(&frame, format!("images/{:03}.png", i));
+    pb.inc();
   }
+  pb.finish_print("done");
 }
 
 fn find_spot(screen: &Vec<Color>, scale: f64, center_x: f64, center_y: f64) -> (f64, f64) {
