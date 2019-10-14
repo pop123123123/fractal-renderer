@@ -1,26 +1,26 @@
 use crate::img;
 use palette::*;
 
-const LIMIT: f64 = 1.0e3;
+const LIMIT: f64 = 2.0;
 
 pub fn fractale(x: f64, y: f64, scale: f64) -> img::Color {
-  let DEPTH: u16 = (((1 << 10) as f64) + scale) as u16;
+  let depth: u16 = (((1 << 10) as f64) + scale) as u16;
   //(((x.powf(2.0) + y.powf(2.0)).sqrt().sin() + 1.0) / 2.0).round()
   //(((x.abs().max(y.abs())).sin() + 1.0) / 2.0).round()
   //(((x.abs().max(y.abs())).sin() + 1.0) / 2.0).round()
-  let a = mand([x, y], [x, y], DEPTH, LIMIT);
+  let a = mand([x, y], [x, y], depth, LIMIT);
   /*if a < 0 {
     0.0
   } else {
-    (DEPTH as i32 - a) as f64
+    (depth as i32 - a) as f64
   }*/
   let col = Hsv::new(
-    palette::RgbHue::<f32>::from_degrees(a as f32 * 360.0 / DEPTH as f32),
+    palette::RgbHue::<f32>::from_degrees(a as f32 * 360.0 / depth as f32),
     1.0,
     if a < 0 {
       0.0
     } else {
-      (((DEPTH as i32 - a) as f32 / (DEPTH as f32))/*+1.0*/).powf(0.1) //.log(2.0)
+      (((depth as i32 - a) as f32 / (depth as f32))/*+1.0*/).powf(0.1) //.log(2.0)
     },
   );
 

@@ -16,7 +16,7 @@ use crate::img::*;
 mod fractale;
 use crate::fractale::*;
 
-const COUNT : u64 = 90;
+const COUNT: u64 = 90;
 
 fn main() {
   let mut scale: f64 = 0.25;
